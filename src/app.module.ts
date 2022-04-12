@@ -2,10 +2,13 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
+      url: process.env.DATABASE_URL,
       type: 'postgres',
       host: 'ec2-99-80-170-190.eu-west-1.compute.amazonaws.com',
       port: 5432,
